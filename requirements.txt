@@ -1,0 +1,7 @@
+matplotlib
+qiskit
+qiskit[visualization]
+qiskit_ibm_runtime
+pylatexenc
+numpy
+qiskit-algorithms
