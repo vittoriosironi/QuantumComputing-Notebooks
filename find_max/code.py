@@ -31,16 +31,17 @@ def create_circuit(data, best_index):
     # If there are some solutions, then we create a circuit which mark each state that satisfy the condition
     circ = QuantumCircuit(num_qubits)
     
-    # For each solution we apply an Z gat
+    # For each solution we apply an Z gate
     for sol_index in solutions_indices:
         # Convert the decimal number in a binary number
         binary_sol = reversed(format(sol_index, f'0{num_qubits}b'))
 
-        # First we convert all the qubit to 1 (with an X gate), only then we can compute the Z gate
+        # X-Gate
         for i, bit in enumerate(binary_sol):
             if bit == '0':
                 circ.x(i)
         
+        # Z-Gate
         circ.mcp(math.pi, list(range(num_qubits - 1)), num_qubits - 1)
 
         # Now we have to restore the initial state

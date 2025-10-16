@@ -8,6 +8,7 @@ This repository collects hands-on implementations of quantum algorithms as I lea
 
 - Folder: `find_max/`
 - Main file: `find_max/code.py`
+- Article: [My Substack Article](https://open.substack.com/pub/vittoriosironi/p/quantum-algorithms-1?r=4cebo7&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true)
 - Short description:
   - The algorithm searches for the index of the maximum value in a list `T` of length `N = 2^n` using an oracle that marks states with values greater than the current candidate and a Grover step to amplify the probability of measuring a better element. It repeats for about O(log N) iterations, updating the candidate.
 - Contract (I/O):
