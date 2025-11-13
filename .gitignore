@@ -1,2 +1,67 @@
-venv
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.conda/
+conda-env/
+pip-wheel-metadata/
+pip-log.txt
+
+# Type checkers / linters
+.mypy_cache/
+.pytype/
+.pylint.d/
+.ruff_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+.jupyter/
+profile_default/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files (macOS)
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# dotenv / secrets
+.env
+.env.*
+.envrc
+.secrets.*
+*.secret
+
+# Project specific
 Tutorial/
