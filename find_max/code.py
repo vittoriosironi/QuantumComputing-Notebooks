@@ -12,7 +12,7 @@ T = [4, 1, 123, 2, 39, 7, 0, 12]
 N = len(T)
 num_qubits = int(np.log2(N))
 
-def create_circuit(data, best_index):
+def oracle(data, best_index):
     '''
         We recreate the quantum circuit, which mark each state |x> if T[X] > T[Y], where Y is the current best index
     '''
@@ -34,18 +34,18 @@ def create_circuit(data, best_index):
     # For each solution we apply an Z gate
     for sol_index in solutions_indices:
         # Convert the decimal number in a binary number
-        binary_sol = reversed(format(sol_index, f'0{num_qubits}b'))
+        bits = format(sol_index, f'0{num_qubits}b')
 
         # X-Gate
-        for i, bit in enumerate(binary_sol):
+        for i, bit in enumerate(reversed(bits)):
             if bit == '0':
                 circ.x(i)
-        
+
         # Z-Gate
         circ.mcp(math.pi, list(range(num_qubits - 1)), num_qubits - 1)
 
         # Now we have to restore the initial state
-        for i, bit in enumerate(binary_sol):
+        for i, bit in enumerate(reversed(bits)):
             if bit == '0':
                 circ.x(i)
 
@@ -64,13 +64,13 @@ def find_max(data):
     best_guess_index = random.randint(0, len(data) - 1)
     print(f"Initial guess (index y): {best_guess_index}, Value T[y]: {data[best_guess_index]}")
 
-    num_iterations = int(np.log2(len(data))) + 1
+    num_iterations = max(1, int((math.pi / 4) * math.sqrt(N)))
     for i in range(num_iterations):
         print(f"Iteration: {i+1}")
         print(f"Current candidate: y = {best_guess_index}, T[y] = {data[best_guess_index]}")
 
         # Now we can apply the Grover search algorithm
-        circ, has_solution = create_circuit(data, best_guess_index)
+        circ, has_solution = oracle(data, best_guess_index)
 
         if not has_solution:
             print("The current candidate is the maximum")
@@ -84,7 +84,7 @@ def find_max(data):
         problem = AmplificationProblem(circ, is_good_state=is_good_state)
 
         # The Sampler pick in input a quantum circuits, execute it many times, count each result and return the probability distribution
-        grover = Grover(iterations=1, sampler=Sampler())
+        grover = Grover(sampler=Sampler())
 
         # Run the quantum search
         result = grover.amplify(problem)
