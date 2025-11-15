@@ -6,9 +6,7 @@ from qiskit.circuit.library import IntegerComparator
 from qiskit.primitives import StatevectorSampler as Sampler
 from qiskit_algorithms import Grover, AmplificationProblem
 
-'''
-Configuration: choose an arbitrary list of number
-'''
+
 T = [4, 1, 123, 2, 39, 7, 0, 12]
 N = len(T)
 num_qubits = int(np.log2(N))
